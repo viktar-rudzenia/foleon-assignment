@@ -27,6 +27,7 @@ export default function PublicationItem({
         />
       }
       onClick={() => setSelectedProject(project)}
+      data-testid="project-card"
     >
       Project Name: {project.name}
     </Card>
