@@ -19,7 +19,7 @@ export default function PublicationItem({
       cover={<img className={styles.image} src={project.icon || ''} alt={project.name} />}
       onClick={() => setSelectedProject(project)}
     >
-      {project.name}
+      Project Name: {project.name}
     </Card>
   );
 }

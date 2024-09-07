@@ -8,14 +8,17 @@ import { Button } from 'antd/es/radio';
 import { fetcher } from '@/utils/fetcher';
 import { ProjectInterface, ProjectsApiResponseInterface } from '@/utils/interfaces';
 import { ApiRoutesEnum } from '@/utils/constants';
-import { PUBLICATIONS_PAGE_SIZE } from './constants';
+import { PUBLICATIONS_INITIAL_PAGE_INDEX, PUBLICATIONS_PAGE_SIZE } from './constants';
 import PublicationItem from '../PublicationItem';
 import PublicationItemDetailed from '../PublicationItemDetailed';
 
 import styles from './index.module.scss';
 
 export default function PublicationsList() {
-  const [publicationsPageIndex, setPublicationsPageIndex] = useState(1);
+  const [publicationsPerPage, setPublicationsPerPage] = useState(PUBLICATIONS_PAGE_SIZE);
+  const [publicationsPageIndex, setPublicationsPageIndex] = useState(
+    PUBLICATIONS_INITIAL_PAGE_INDEX
+  );
   const [selectedProject, setSelectedProject] = useState<null | ProjectInterface>(null);
 
   const {
@@ -24,7 +27,7 @@ export default function PublicationsList() {
     error: projectDataError,
     mutate: mutateProjectsData,
   } = useSWR<ProjectsApiResponseInterface>(
-    `${ApiRoutesEnum.PUBLICATIONS}?page=${publicationsPageIndex}&limit=${PUBLICATIONS_PAGE_SIZE}`,
+    `${ApiRoutesEnum.PUBLICATIONS}?page=${publicationsPageIndex}&limit=${publicationsPerPage}`,
     fetcher
   );
 
@@ -64,11 +67,18 @@ export default function PublicationsList() {
           </div>
           <div className={styles.paginationWrapper}>
             <Pagination
-              pageSize={PUBLICATIONS_PAGE_SIZE}
+              pageSize={publicationsPerPage}
               total={projectsData?.total}
               current={projectsData?.page}
               onChange={(page) => setPublicationsPageIndex(page)}
-              showSizeChanger={false}
+              showSizeChanger={true}
+              onShowSizeChange={(newPageIndex, newSize) => {
+                console.log('newPageIndex', newPageIndex);
+                console.log('newSize', newSize);
+                setPublicationsPageIndex(newPageIndex);
+                setPublicationsPerPage(newSize);
+              }}
+              pageSizeOptions={['1', '5', '10', '20', '30', '40']}
             />
           </div>
         </>

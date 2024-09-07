@@ -1,5 +1,7 @@
 .wrapper {
-  height: 60px;
+  height: $footerHeight;
+  min-height: $footerHeight;
+  max-height: $footerHeight;
   display: flex;
   justify-content: center;
   align-items: center;
