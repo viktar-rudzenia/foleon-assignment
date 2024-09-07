@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "@ant-design/nextjs-registry": "^1.0.1",
@@ -31,6 +32,7 @@
     "@types/qs": "^6.9.15",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "cypress": "^13.14.2",
     "eslint": "^8",
     "eslint-config-next": "14.2.8",
     "eslint-config-prettier": "^9.1.0",
