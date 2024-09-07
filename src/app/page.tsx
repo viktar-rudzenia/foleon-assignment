@@ -9,13 +9,11 @@ export default function Home() {
   return (
     <h1 className={styles.wrapper}>
       <div>This is the home page of the Foleon Assignment app.</div>
-      <div>
-        <FoButton>
-          <Link className={styles.link} href={AllRoutesEnum.PUBLICATIONS}>
-            Go to publications page
-          </Link>
-        </FoButton>
-      </div>
+      <FoButton>
+        <Link className={styles.link} href={AllRoutesEnum.PUBLICATIONS}>
+          Go to publications page
+        </Link>
+      </FoButton>
     </h1>
   );
 }
