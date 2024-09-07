@@ -1,5 +1,9 @@
 # Foleon assignment
 
+## Link to application
+
+[Link to the deployed application](https://foleon-assignment.vercel.app/)
+
 ## Project overview. Stack
 
 [Next.js](https://www.npmjs.com/package/next) 14 (App Router approach)
