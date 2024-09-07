@@ -1,7 +1,7 @@
 .wrapper {
-  height: 98px;
-  min-height: 98px;
-  max-height: 98px;
+  height: $headerHeight;
+  min-height: $headerHeight;
+  max-height: $headerHeight;
   position: sticky;
   top: 0;
   display: flex;

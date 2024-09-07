@@ -1,11 +1,12 @@
 $projectsPaginationHeight: 80px;
+$projectsActionPanelHeight: 80px;
 
 .wrapper {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   gap: 40px;
-  padding: 20px 0 $projectsPaginationHeight 0;
+  padding: calc(20px + $projectsActionPanelHeight) 0 $projectsPaginationHeight 0;
   overflow-x: hidden;
 }
 

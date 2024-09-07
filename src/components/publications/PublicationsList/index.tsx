@@ -4,13 +4,19 @@ import { useState } from 'react';
 import useSWR from 'swr';
 import { Modal, Pagination, Result, Spin } from 'antd';
 import { Button } from 'antd/es/radio';
+import qs from 'qs';
 
 import { fetcher } from '@/utils/fetcher';
 import { ProjectInterface, ProjectsApiResponseInterface } from '@/utils/interfaces';
 import { ApiRoutesEnum } from '@/utils/constants';
-import { PUBLICATIONS_INITIAL_PAGE_INDEX, PUBLICATIONS_PAGE_SIZE } from './constants';
+import {
+  PUBLICATIONS_INITIAL_PAGE_INDEX,
+  PUBLICATIONS_PAGE_SIZE,
+  compileQueryParams,
+} from './constants';
 import PublicationItem from '../PublicationItem';
 import PublicationItemDetailed from '../PublicationItemDetailed';
+import PublicationsActionPanel from '../PublicationsActionPanel';
 
 import styles from './index.module.scss';
 
@@ -20,6 +26,8 @@ export default function PublicationsList() {
     PUBLICATIONS_INITIAL_PAGE_INDEX
   );
   const [selectedProject, setSelectedProject] = useState<null | ProjectInterface>(null);
+  const [searchProjectByName, setSearchProjectByName] = useState('');
+  const [filterProjectByIdentifier, setFilterProjectByIdentifier] = useState('');
 
   const {
     data: projectsData,
@@ -27,7 +35,11 @@ export default function PublicationsList() {
     error: projectDataError,
     mutate: mutateProjectsData,
   } = useSWR<ProjectsApiResponseInterface>(
-    `${ApiRoutesEnum.PUBLICATIONS}?page=${publicationsPageIndex}&limit=${publicationsPerPage}`,
+    `${ApiRoutesEnum.PUBLICATIONS}?${qs.stringify({
+      page: publicationsPageIndex,
+      limit: publicationsPerPage,
+      query: compileQueryParams({ searchProjectByName, filterProjectByIdentifier }),
+    })}`,
     fetcher
   );
 
@@ -35,6 +47,12 @@ export default function PublicationsList() {
 
   return (
     <div className={styles.wrapper}>
+      <PublicationsActionPanel
+        searchProjectByName={searchProjectByName}
+        setSearchProjectByName={setSearchProjectByName}
+        filterProjectByIdentifier={filterProjectByIdentifier}
+        setFilterProjectByIdentifier={setFilterProjectByIdentifier}
+      />
       {isProjectsDataLoading && <Spin size="large" />}
       {!isProjectsDataLoading && projectDataError && (
         <Result
