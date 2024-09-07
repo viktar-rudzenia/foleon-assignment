@@ -4,7 +4,7 @@ import styles from './page.module.scss';
 
 export default function Publications() {
   return (
-    <div className={styles.wrapper}>
+    <div data-testid="publications" className={styles.wrapper}>
       <PublicationsList />
     </div>
   );

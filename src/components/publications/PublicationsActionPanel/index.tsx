@@ -43,11 +43,21 @@ export default function PublicationsActionPanel({
     <div className={styles.wrapper}>
       <div>
         <span>Search by name:</span>
-        <Input type="text" value={currentSearchByName} onChange={handleSearchByNameChange} />
+        <Input
+          data-testid="search-by-name"
+          type="text"
+          value={currentSearchByName}
+          onChange={handleSearchByNameChange}
+        />
       </div>
       <div>
         <span>Filter by identifier:</span>
-        <Input type="text" value={currentfilterByIdentifier} onChange={handleFilterByIdentifier} />
+        <Input
+          data-testid="filter-by-identifier"
+          type="text"
+          value={currentfilterByIdentifier}
+          onChange={handleFilterByIdentifier}
+        />
       </div>
     </div>
   );
