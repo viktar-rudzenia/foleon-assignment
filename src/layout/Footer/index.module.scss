@@ -6,7 +6,12 @@
   justify-content: center;
   align-items: center;
   gap: 8px;
-  border-top: 4px solid #cfcfcf91;
+  border-top: 3px solid #cfcfcf91;
   padding: 10px;
   font-size: rem(13px);
+  color: white;
+}
+
+.mailLink {
+  color: white;
 }

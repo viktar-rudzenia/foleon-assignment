@@ -20,7 +20,7 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className={styles.Error__wrapper}>
+    <div className={styles.wrapper}>
       <h2>Something went wrong!</h2>
       <FoButton
         onClick={
@@ -32,7 +32,7 @@ export default function Error({
       </FoButton>
       or
       <FoButton>
-        <Link className={styles.Error__link} href={AllRoutesEnum.HOME}>
+        <Link className={styles.link} href={AllRoutesEnum.HOME}>
           Back to Home
         </Link>
       </FoButton>

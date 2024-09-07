@@ -1,4 +1,4 @@
-.Error__wrapper {
+.wrapper {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -7,7 +7,7 @@
   flex-grow: 1;
 }
 
-.Error__link {
+.link {
   text-decoration: none;
   color: white;
 }

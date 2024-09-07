@@ -91,8 +91,6 @@ export default function PublicationsList() {
               onChange={(page) => setPublicationsPageIndex(page)}
               showSizeChanger={true}
               onShowSizeChange={(newPageIndex, newSize) => {
-                console.log('newPageIndex', newPageIndex);
-                console.log('newSize', newSize);
                 setPublicationsPageIndex(newPageIndex);
                 setPublicationsPerPage(newSize);
               }}

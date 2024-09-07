@@ -8,7 +8,7 @@ export const compileQueryParams = ({
   searchProjectByName: string;
   filterProjectByIdentifier: string;
 }) => {
-  let queryParams = [];
+  const queryParams = [];
   if (searchProjectByName) {
     queryParams.push({ field: 'name', type: 'like', value: `%${searchProjectByName}` });
   }
