@@ -1,0 +1,11 @@
+.projectCard {
+  width: 300px;
+
+  @media screen and (max-width: $laptopBreakpoint) {
+    width: 150px;
+  }
+}
+
+.image {
+  @include unselectable;
+}

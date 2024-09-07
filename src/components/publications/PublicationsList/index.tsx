@@ -2,18 +2,21 @@
 
 import { useState } from 'react';
 import useSWR from 'swr';
-import { Pagination, Result, Spin } from 'antd';
+import { Modal, Pagination, Result, Spin } from 'antd';
 import { Button } from 'antd/es/radio';
 
 import { fetcher } from '@/utils/fetcher';
-import { ProjectsApiResponseInterface } from '@/utils/interfaces';
+import { ProjectInterface, ProjectsApiResponseInterface } from '@/utils/interfaces';
 import { ApiRoutesEnum } from '@/utils/constants';
 import { PUBLICATIONS_PAGE_SIZE } from './constants';
+import PublicationItem from '../PublicationItem';
+import PublicationItemDetailed from '../PublicationItemDetailed';
 
 import styles from './index.module.scss';
 
 export default function PublicationsList() {
   const [publicationsPageIndex, setPublicationsPageIndex] = useState(1);
+  const [selectedProject, setSelectedProject] = useState<null | ProjectInterface>(null);
 
   const {
     data: projectsData,
@@ -51,18 +54,35 @@ export default function PublicationsList() {
       {projectsData && projects.length > 0 && (
         <>
           <div className={styles.charactersList}>
-            {projects?.map((project) => <div>{project.name}</div>)}
+            {projects?.map((project) => (
+              <PublicationItem
+                key={project.id}
+                project={project}
+                setSelectedProject={setSelectedProject}
+              />
+            ))}
           </div>
           <div className={styles.paginationWrapper}>
             <Pagination
               pageSize={PUBLICATIONS_PAGE_SIZE}
               total={projectsData?.total}
-              current={projectsData?.page_count}
+              current={projectsData?.page}
               onChange={(page) => setPublicationsPageIndex(page)}
               showSizeChanger={false}
             />
           </div>
         </>
+      )}
+
+      {selectedProject && (
+        <Modal
+          open={!!selectedProject}
+          footer={null}
+          onCancel={() => setSelectedProject(null)}
+          centered
+        >
+          <PublicationItemDetailed project={selectedProject} />
+        </Modal>
       )}
 
       {!isProjectsDataLoading && !projectDataError && projects.length === 0 && (
