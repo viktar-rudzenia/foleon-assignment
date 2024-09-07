@@ -57,16 +57,16 @@ export default function PublicationsList() {
       {!isProjectsDataLoading && projectDataError && (
         <Result
           status="warning"
-          title="An error occurred, please try downloading Projects again or refreshing the page"
+          title={
+            <div className={styles.resultWarning}>
+              An error occurred, please try downloading Projects again or refreshing the page
+            </div>
+          }
           extra={
             <>
-              <Button type="primary" onClick={() => mutateProjectsData()}>
-                Download Projects data again
-              </Button>
+              <Button onClick={() => mutateProjectsData()}>Download Projects data again</Button>
               <span>or</span>
-              <Button type="primary" onClick={() => window.location.reload()}>
-                Refresh the page
-              </Button>
+              <Button onClick={() => window.location.reload()}>Refresh the page</Button>
             </>
           }
         />
