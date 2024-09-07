@@ -1,15 +1,24 @@
-$charactersPaginationHeight: 80px;
+$projectsPaginationHeight: 80px;
 
 .wrapper {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   gap: 40px;
-  padding: 20px 0 $charactersPaginationHeight 0;
+  padding: 20px 0 $projectsPaginationHeight 0;
   overflow-x: hidden;
 }
+
+.projectsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
 .paginationWrapper {
-  height: $charactersPaginationHeight;
+  height: $projectsPaginationHeight;
   position: absolute;
   width: 100%;
   bottom: $footerHeight;

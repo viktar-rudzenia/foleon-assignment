@@ -39,7 +39,7 @@ export default function PublicationsList() {
       {!isProjectsDataLoading && projectDataError && (
         <Result
           status="warning"
-          title="An error occurred, please try downloading Characters again or refreshing the page"
+          title="An error occurred, please try downloading Projects again or refreshing the page"
           extra={
             <>
               <Button type="primary" onClick={() => mutateProjectsData()}>
@@ -56,7 +56,7 @@ export default function PublicationsList() {
 
       {projectsData && projects.length > 0 && (
         <>
-          <div className={styles.charactersList}>
+          <div className={styles.projectsList}>
             {projects?.map((project) => (
               <PublicationItem
                 key={project.id}

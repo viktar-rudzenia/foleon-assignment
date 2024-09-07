@@ -2,7 +2,9 @@ export interface ProjectInterface {
   id: number;
   license: number;
   name: string;
+  affected_on: string;
   created_on: string;
+  modified_on: string;
   icon: string | null;
   identifier: string;
 }

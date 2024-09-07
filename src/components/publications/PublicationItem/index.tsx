@@ -1,4 +1,5 @@
 import { ReactElement } from 'react';
+import Image from 'next/image';
 import { Card } from 'antd';
 
 import { ProjectInterface } from '@/utils/interfaces';
@@ -16,7 +17,15 @@ export default function PublicationItem({
     <Card
       className={styles.projectCard}
       hoverable
-      cover={<img className={styles.image} src={project.icon || ''} alt={project.name} />}
+      cover={
+        <Image
+          className={styles.image}
+          src={project?.icon || '/project-icon-placeholder.png'}
+          alt={project?.name}
+          width="200"
+          height="300"
+        />
+      }
       onClick={() => setSelectedProject(project)}
     >
       Project Name: {project.name}
